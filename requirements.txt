@@ -1,0 +1,9 @@
+flask
+flask-bcrypt
+flask-login
+torch
+torchvision
+gym
+numpy
+requests
+openai  # Add this line
