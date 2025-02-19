@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Ask APEX AI{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="APEX AI Logo" class="mt-5" style="width: 200px;">
+    <h1 class="mt-3">Ask APEX AI</h1>
+    <form id="question-form" class="mt-3">
+        <div class="form-group">
+            <label for="question">Question:</label>
+            <input type="text" id="question" name="question" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ask</button>
+    </form>
+    <h2 class="mt-5">Response:</h2>
+    <p id="response"></p>
+    <a href="/logout" class="btn btn-secondary mt-3">Logout</a>
+</div>
+<script>
+    document.getElementById('question-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const question = document.getElementById('question').value;
+        const responseElement = document.getElementById('response');
+        responseElement.textContent = 'Generating response...';
+
+        const response = await fetch('/ask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question })
+        });
+        const data = await response.json();
+        responseElement.textContent = data.response;
+    });
+</script>
+{% endblock %}

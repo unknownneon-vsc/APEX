@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% if theme == 'dark' %}
+    <link href="/static/dark-theme.css" rel="stylesheet">
+    {% elif theme == 'blue' %}
+    <link href="/static/blue-theme.css" rel="stylesheet">
+    {% elif theme == 'green' %}
+    <link href="/static/green-theme.css" rel="stylesheet">
+    {% else %}
+    <link href="/static/light-theme.css" rel="stylesheet">
+    {% endif %}
+</head>
+<body class="{{ theme }}">
+    {% block content %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
